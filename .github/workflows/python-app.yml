@@ -2,42 +2,41 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    
-    - name: Run main.py with test.py as argument to generate test-encrypted.py
-      run: |
-        python main.py test.py
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-    - name: Run test-encrypted.py and check output
-      run: |
-        output=$(python test-encrypted.py)
-        if [[ "$output" == "Hello World" ]]; then
-          echo "Test passed"
-        else
-          echo "Test failed"
-          exit 1
-        fi
-        
-    - name: Upload test-encrypted.py to GitHub repository
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-encrypted
-        path: ./test-encrypted.py
+      - name: Run main.py with test.py as argument to generate test-encrypted.py
+        run: |
+          python main.py test.py
+
+      - name: Run test-encrypted.py and check output
+        run: |
+          output=$(python test-encrypted.py)
+          if [[ "$output" == "Hello World" ]]; then
+            echo "Test passed"
+          else
+            echo "Test failed"
+            exit 1
+          fi
+
+      - name: Upload test-encrypted.py to GitHub repository
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-encrypted
+          path: ./test-encrypted.py

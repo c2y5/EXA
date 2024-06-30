@@ -40,15 +40,9 @@ python rtime.py /path/to/script.py
 
 ## Dependencies
 
-This project requires Python 3.x and the following Python packages:
+This project requires Python 3.x and the following Python package:
 
-- `base64`
-- `zlib`
-- `random`
-- `argparse`
-- `time`
-- `sys`
-- `io`
+- `argparse` | ```python -m pip install --upgrade argparse```
 
 ## License
 
